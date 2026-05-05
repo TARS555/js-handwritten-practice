@@ -1,26 +1,3 @@
-function DeepCopy(obj) {
-  if (obj instanceof Date) return new Date(obj);
-  if (obj instanceof RegExp) return new RegExp(obj);
-  if (obj instanceof Error) return new Error(obj.message);
-  if (obj instanceof Function)
-    return function (...args) {
-      return obj.call(this, ...args);
-    };
-  if (!obj && typeof obj === "object") return obj;
-  let newObj = Array.isArray(obj) ? [] : {};
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      if (typeof obj[key] === "object") {
-        newObj[key] = DeepCopy(obj[key]);
-      } else {
-        newObj[key] = obj[key];
-      }
-    }
-  }
-  return newObj;
-}
-
-// 1. 新增一个 hash 参数，默认值为一个新的 WeakMap
 function DeepCopy(obj, hash = new WeakMap()) {
   if (obj instanceof Date) return new Date(obj);
   if (obj instanceof RegExp) return new RegExp(obj);

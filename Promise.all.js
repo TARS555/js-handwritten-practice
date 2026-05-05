@@ -1,4 +1,4 @@
-function promiseAll(promises) {
+function myPromiseAll(promises) {
   return new Promise((resolve, reject) => {
     const res = [];
     let len = promises.length;
@@ -19,10 +19,10 @@ function promiseAll(promises) {
   });
 }
 
-Promise.allSettled = function (promises) {
+function myPromiseAllsettled(promises) {
   return new Promise((resolve) => {
     const results = promises.map((promise) => {
-      return promise.then(
+      return Promise.resolve(promise).then(
         (value) => {
           return { status: "fulfilled", value };
         },
