@@ -49,3 +49,55 @@ function newDebounce(fn, delay) {
     }, delay);
   };
 }
+
+function debounce(fn, delay, immediate = false) {
+  let timer = null;
+  function debounced(...args) {
+    const runLeading = immediate && timer === null;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = null;
+      if (!immediate) fn.apply(this, args);
+    }, delay);
+    if (runLeading) fn.apply(this, args);
+  }
+  debounced.cancel = () => {
+    clearTimeout(timer);
+    timer = null;
+  };
+  return debounced;
+}
+
+function throttle(fn, delay) {
+  let timer = null;
+  function throttled(...args) {
+    if (timer != null) return;
+    timer = setTimeout(() => {
+      timer = null;
+      fn.apply(this, args);
+    }, delay);
+  }
+  throttled.cancel = () => {
+    if (timer != null) clearTimeout(timer);
+    timer = null;
+  };
+  return throttled;
+}
+
+function inspectThrottleScenario(scenario) {
+  if (scenario === 'apiShape') {
+    const throttled = throttle(() => { }, 120);
+    return {
+      isFunction: typeof throttled === 'function',
+      hasCancel: typeof throttled.cancel === 'function',
+    };
+  }
+  if (scenario === 'cancelIsSafe') {
+    const throttled = throttle(() => { }, 50);
+    throttled.cancel();
+    throttled.cancel();
+    return 'ok';
+  }
+}
+
+module.exports = { inspectThrottleScenario };

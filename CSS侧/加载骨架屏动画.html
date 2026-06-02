@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="card">
+    <div class="skeleton skeleton-text"></div>
+    <div class="skeleton-text skeleton"></div>
+    <div class="skeleton-text skeleton"></div>
+  </div>
+</body>
+<style>
+  .skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* 使用 */
+.skeleton-text {
+  height: 16px;
+  /* width: 300px; */
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+.skeleton-text:nth-child(2) {
+  width: 80%;
+}
+.skeleton-text:nth-child(3) {
+  width: 60%;
+}
+</style>
+</html>

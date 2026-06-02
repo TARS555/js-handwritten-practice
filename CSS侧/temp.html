@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <div class="gujia gujia-text"></div>
+    </div>
+  </body>
+  <style>
+    .gujia {
+      background: linear-gradient(90deg, red 25%, purple 50%, skyblue 75%);
+      background-size: 200% 100%;
+      animation: slimmer 1.5s infinite;
+    }
+
+    @keyframes slimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .gujia-text {
+      height: 12px;
+    }
+  </style>
+</html>

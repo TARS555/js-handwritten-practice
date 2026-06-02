@@ -7,7 +7,7 @@ function DeepCopy(obj, hash = new WeakMap()) {
       return obj.call(this, ...args);
     };
 
-  // 优化：处理 null 的逻辑更清晰一点
+  // 优化：处理 null和常量 的逻辑更清晰一点
   if (obj === null || typeof obj !== "object") return obj;
 
   // 2. 查字典：如果这个对象已经被拷贝过了，直接返回之前克隆好的结果，打断死循环！
